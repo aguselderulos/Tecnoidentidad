@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+  body {
+    background-color: #183459; /* azul más alto pero suave */
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .typewriter {
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+
+  .hidden-link {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 24px;
+    color: #1f4b78; /* azul apenas más claro */
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .hidden-link:hover {
+    color: #2c6cb1;
+  }
+
+  .credits {
+    position: absolute;
+    bottom: 15px;
+    font-size: 12px;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <a href="pagina_secreta2.html" class="hidden-link">?</a>
+
+  <div id="verse1" class="typewriter"></div>
+  <div id="verse2" class="typewriter"></div>
+  <div id="verse3" class="typewriter"></div>
+  <div id="verse4" class="typewriter"></div>
+
+  <div class="credits">Creado por Agustín Paez y ChatGPT, el dúo dinámico, agosto de 2025.</div>
+
+  <script>
+    const lines = [
+     { el: document.getElementById("verse1"), text: "Quiero que te mires realmente por primera vez." },
+      { el: document.getElementById("verse2"), text: "Veas quien sos." },
+      { el: document.getElementById("verse3"), text: "Solo un reflejo sereno." },
+      { el: document.getElementById("verse4"), text: "A pesar de todo, seguís siendo vos." }
+    ];
+
+    let currentLine = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (currentLine >= lines.length) return;
+
+      const { el, text } = lines[currentLine];
+      if (charIndex < text.length) {
+        el.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 70);
+      } else {
+        currentLine++;
+        charIndex = 0;
+        setTimeout(typeLine, 600);
+      }
+    }
+
+    window.onload = typeLine;
+  </script>
+</body>
+</html>

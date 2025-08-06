@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>...</title>
+<style>
+  body {
+    background-color: black;
+    color: #00ff99;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .verse {
+    position: absolute;
+    border-right: 2px solid #00ff99;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  /* Glitch sutil */
+  .glitch {
+    animation: glitch 1s infinite;
+  }
+  @keyframes glitch {
+    0% { text-shadow: 1px 1px red, -1px -1px blue; }
+    25% { text-shadow: -1px 1px magenta, 1px -1px cyan; }
+    50% { text-shadow: 1px -1px lime, -1px 1px yellow; }
+    75% { text-shadow: -1px -1px orange, 1px 1px purple; }
+    100% { text-shadow: 1px 1px red, -1px -1px blue; }
+  }
+  .click-to-continue {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  .click-to-continue:hover {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+  <div id="verse1" class="verse glitch" style="top: 10%; left: 5%;"></div>
+  <div id="verse2" class="verse glitch" style="top: 30%; right: 10%;"></div>
+  <div id="verse3" class="verse glitch" style="bottom: 40%; left: 20%;"></div>
+  <div id="verse4" class="verse glitch" style="bottom: 15%; right: 15%;"></div>
+  <div id="continue" class="click-to-continue" onclick="window.location.href='pagina19.html'">
+    ➤ continuar
+  </div>
+
+  <script>
+    const lines = [
+      { el: document.getElementById("verse1"), text: "Quizás sientas que todo sea terrible en este momento." },
+      { el: document.getElementById("verse2"), text: "Que no hay salida. Ni retorno. " },
+      { el: document.getElementById("verse3"), text: "Que te aprieta tanto el pecho que ni gritando sacarías tanto dolor." },
+      { el: document.getElementById("verse4"), text: "Que no sepas quién es la persona que te devuelve el espejo." }
+    ];
+
+    let currentLine = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (currentLine >= lines.length) {
+        document.getElementById("continue").style.display = "block";
+        return;
+      }
+
+      const { el, text } = lines[currentLine];
+      if (charIndex < text.length) {
+        el.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 70);
+      } else {
+        currentLine++;
+        charIndex = 0;
+        setTimeout(typeLine, 500);
+      }
+    }
+
+    window.onload = typeLine;
+  </script>
+</body>
+</html>

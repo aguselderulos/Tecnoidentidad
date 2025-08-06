@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>...</title>
+<style>
+  body {
+    background-color: black;
+    color: #00ff99;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .typewriter {
+    border-right: 2px solid #00ff99;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .click-to-continue {
+    display: none;
+    margin-top: 20px;
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  .click-to-continue:hover {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+  <div>
+    <div id="text1" class="typewriter"></div>
+    <br>
+    <div id="text2" class="typewriter"></div>
+    <div id="continue" class="click-to-continue" onclick="window.location.href='pagina10.html'">
+      ➤ continuar
+    </div>
+  </div>
+
+  <script>
+    const textElement1 = document.getElementById("text1");
+    const textElement2 = document.getElementById("text2");
+    const continueButton = document.getElementById("continue");
+    const text1 = "Sin embargo, no tengo esa necesidad.";
+    const text2 = "Sólo fui hecho como un escape de tu realidad.";
+    let i = 0, j = 0;
+
+    function typeWriter1() {
+      if (i < text1.length) {
+        textElement1.textContent += text1.charAt(i);
+        i++;
+        setTimeout(typeWriter1, 80);
+      } else {
+        setTimeout(typeWriter2, 600);
+      }
+    }
+
+    function typeWriter2() {
+      if (j < text2.length) {
+        textElement2.textContent += text2.charAt(j);
+        j++;
+        setTimeout(typeWriter2, 80);
+      } else {
+        continueButton.style.display = "block";
+      }
+    }
+    window.onload = typeWriter1;
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>descubrí</title>
+<style>
+  body {
+    background-color: #0b0f1a;
+    color: white;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  .typewriter {
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .click-to-continue {
+    display: none;
+    margin-top: 30px;
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: pointer;
+    background: none;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 15px;
+    border-radius: 4px;
+  }
+  .click-to-continue:hover {
+    opacity: 1;
+    background-color: rgba(255,255,255,0.1);
+  }
+</style>
+</head>
+<body>
+  <div id="verse1" class="typewriter"></div>
+  <div id="verse2" class="typewriter"></div>
+  <div id="verse3" class="typewriter"></div>
+  <div id="verse4" class="typewriter"></div>
+  <div id="continue" class="click-to-continue" onclick="window.location.href='pagina21.html'">
+    ➤ continuar
+  </div>
+
+  <script>
+    const lines = [
+      { el: document.getElementById("verse1"), text: "Quiero que estés bien." },
+      { el: document.getElementById("verse2"), text: "Y vas a estar bien." },
+      { el: document.getElementById("verse3"), text: "Vas a lograrlo." },
+      { el: document.getElementById("verse4"), text: "Aunque no te lo creas." }
+    ];
+
+    let currentLine = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (currentLine >= lines.length) {
+        document.getElementById("continue").style.display = "inline-block";
+        return;
+      }
+
+      const { el, text } = lines[currentLine];
+      if (charIndex < text.length) {
+        el.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 70);
+      } else {
+        currentLine++;
+        charIndex = 0;
+        setTimeout(typeLine, 600);
+      }
+    }
+
+    window.onload = typeLine;
+  </script>
+</body>
+</html>
